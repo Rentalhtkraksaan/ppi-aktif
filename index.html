@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calling Sponsorship - PPI Kabprob 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+
+    <style>
+        :root {
+            --primary-gold: #ffcc00;
+            --bg-dark: #0a0e17;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+
+        body {
+            background-color: var(--bg-dark);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #1a2a44 0%, #0a0e17 100%);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .overlay-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            width: 90%;
+            max-width: 400px;
+            padding: 35px 25px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .icon-header {
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.5));
+        }
+
+        h1 { font-weight: 900; font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 8px; }
+        h1 span { color: var(--primary-gold); }
+        p { font-size: 0.85rem; color: #a0aec0; margin-bottom: 25px; line-height: 1.4; }
+
+        /* Partner Section */
+        .current-sponsors {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .label-sponsor {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .sponsor-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .sponsor-item img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(255, 204, 0, 0.3));
+        }
+
+        .sponsor-name { text-align: left; }
+        .sponsor-name b { display: block; font-size: 0.9rem; color: #fff; }
+        .sponsor-name span { font-size: 0.65rem; color: #8892b0; }
+
+        /* Buttons */
+        .btn-wa {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: #25d366; color: white; text-decoration: none;
+            padding: 15px; border-radius: 12px; font-weight: 700; margin-bottom: 10px;
+            font-size: 0.9rem; transition: 0.3s;
+        }
+
+        .btn-ig {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: linear-gradient(45deg, #f09433 0%, #dc2743 50%, #bc1888 100%);
+            color: white; text-decoration: none;
+            padding: 15px; border-radius: 12px; font-weight: 700; margin-bottom: 20px;
+            font-size: 0.9rem; transition: 0.3s;
+        }
+
+        .btn-wa:hover, .btn-ig:hover { transform: translateY(-2px); opacity: 0.9; }
+
+        .btn-next {
+            width: 100%; background: transparent; color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px; border-radius: 12px; cursor: pointer;
+            font-weight: 600; font-size: 0.85rem; transition: 0.3s;
+        }
+
+        .btn-next:hover { color: var(--primary-gold); border-color: var(--primary-gold); }
+
+        /* Visitor Counter */
+        .visitor-counter {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.75rem;
+            color: #8892b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        #visit-count {
+            color: var(--primary-gold);
+            font-weight: 800;
+            background: rgba(255, 204, 0, 0.1);
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay-card">
+        <div class="icon-header">
+            <i class="fas fa-bullhorn"></i>
+        </div>
+        
+        <h1>CALLING <span>SPONSORSHIP</span></h1>
+        <p>Jadilah mitra resmi dalam kemeriahan Bukber PPI Kab. Probolinggo 2026</p>
+
+        <div class="current-sponsors">
+            <span class="label-sponsor">Official Partner</span>
+            <div class="sponsor-item">
+                <img src="ht.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3616/3616550.png'">
+                <div class="sponsor-name">
+                    <b>RENTAL HT KRAKSAAN</b>
+                    <span>Communication Partner</span>
+                </div>
+            </div>
+        </div>
+
+        <a href="https://wa.me/6282334587562" target="_blank" class="btn-wa">
+            <i class="fab fa-whatsapp"></i> Chat Kemitraan
+        </a>
+
+   
+
+        <button class="btn-next" onclick="window.location.href='main.html'">
+            Lanjut Masuk 
+        </button>
+
+        <div class="visitor-counter">
+            <i class="fas fa-eye"></i>
+            Dikunjungi <span id="visit-count">...</span> kali
+        </div>
+    </div>
+
+    <script>
+        // Konfigurasi Firebase Anda
+        const firebaseConfig = {
+            apiKey: "AIzaSyCtQh5SpZCk2TDUk9iMOjQX5uc6gRIJyp8",
+            authDomain: "paskab-c3eb4.firebaseapp.com",
+            databaseURL: "https://paskab-c3eb4-default-rtdb.firebaseio.com",
+            projectId: "paskab-c3eb4",
+            storageBucket: "paskab-c3eb4.firebasestorage.app",
+            messagingSenderId: "630872087747",
+            appId: "1:630872087747:web:dbe8eee722f2d0f6759676"
+        };
+
+        // Inisialisasi
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        const visitRef = db.ref('visitor_stats/total_calls');
+
+        // Fungsi Counter "Aggressive" (Setiap refresh = +1)
+        function startCounter() {
+            // Langsung tambah +1 tanpa cek localStorage
+            visitRef.transaction((currentValue) => {
+                return (currentValue || 0) + 1;
+            });
+            
+            // Pantau perubahan secara real-time untuk ditampilkan di layar
+            visitRef.on('value', (snapshot) => {
+                const count = snapshot.val();
+                if (count !== null) {
+                    document.getElementById('visit-count').innerText = count.toLocaleString('id-ID');
+                }
+            });
+        }
+
+        // Jalankan saat halaman dibuka
+        startCounter();
+    </script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Bukber PPI 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-gold: #ffcc00;
+            --bg-dark: #0a0e17;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --error-red: #ff4d4d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+
+        body {
+            background-color: var(--bg-dark);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 20px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1a2a44 0%, #0a0e17 100%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 450px;
+            width: 100%;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 204, 0, 0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        h2 { text-align: center; margin-bottom: 25px; color: var(--primary-gold); text-transform: uppercase; letter-spacing: 2px; }
+
+        .form-group { margin-bottom: 18px; }
+        label { display: block; font-size: 0.75rem; margin-bottom: 8px; color: #8892b0; font-weight: 700; }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus { border-color: var(--primary-gold); background: rgba(255,255,255,0.1); }
+        input[readonly] { background: rgba(255,204,0,0.05); color: #888; cursor: not-allowed; border-color: rgba(255,204,0,0.2); }
+
+        .radio-group { display: flex; gap: 10px; }
+        .radio-item { flex: 1; position: relative; }
+        .radio-item input { display: none; }
+        .radio-item label {
+            display: block;
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            text-align: center;
+            border-radius: 12px;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.1);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .radio-item input:checked + label {
+            background: rgba(255, 204, 0, 0.15);
+            border-color: var(--primary-gold);
+            color: var(--primary-gold);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-gold);
+            border: none;
+            border-radius: 15px;
+            color: black;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-submit:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255, 204, 0, 0.4); }
+        .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        #success-page {
+            display: none;
+            text-align: center;
+            animation: fadeInUp 0.7s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .wa-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 15px 35px;
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 800;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            transition: 0.3s;
+        }
+
+        .hidden { display: none; }
+        .back-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .back-home:hover {
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        /* Pastikan container punya position relative agar tombol back mengikuti container */
+        .container {
+            position: relative; /* Tambahkan ini */
+            max-width: 450px;
+            /* ... sisa kode lainnya ... */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-animation"></div>
+
+    <div class="container">
+        <a href="main.html" class="back-home" style="position: absolute; top: 25px; left: 25px; color: var(--primary-gold); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: 0.3s; z-index: 10;">
+            
+            <span style="font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;">BACK</span>
+        </a>
+
+        <div id="form-ui">
+            <h2>Pendaftaran</h2>
+            <form id="regForm">
+                <div class="form-group">
+                    <label>NAMA LENGKAP</label>
+                    <input type="text" id="nama" placeholder="Masukkan nama lengkap">
+                </div>
+
+                <div class="form-group">
+                    <label>NOMOR WHATSAPP</label>
+                    <input type="number" id="whatsapp" placeholder="Contoh: 081234567xxx">
+                </div>
+
+                <div class="form-group">
+                    <label>KATEGORI</label>
+                    <select id="kategori" onchange="updateKategori()">
+                        <option value="">-- Pilih --</option>
+                        <option value="PPI">PPI</option>
+                        <option value="CAPASKAB">CAPASKAB</option>
+                    </select>
+                </div>
+
+                <div id="angkatan-box" class="form-group hidden">
+                    <label>TAHUN ANGKATAN</label>
+                    <input type="number" id="angkatan" placeholder="Contoh: 2024">
+                </div>
+
+                <div class="form-group">
+                    <label>MENU LALAPAN</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" name="menu" id="ayam" value="Ayam">
+                            <label for="ayam">AYAM</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="menu" id="telur" value="Telur">
+                            <label for="telur">TELUR</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>UPLOAD BUKTI TRANSFER</label>
+                    <input type="file" id="bukti" accept="image/*" style="font-size: 0.8rem;">
+                </div>
+
+                <button type="button" class="btn-submit" id="btnKirim" onclick="prosesData()">
+                    <span>KIRIM DATA</span>
+                </button>
+            </form>
+        </div>
+
+        <div id="success-page">
+            <i class="fas fa-check-circle" style="font-size: 5rem; color: var(--primary-gold); margin-bottom: 20px;"></i>
+            <h2 id="res-nama">Halo!</h2>
+            <p id="res-angkatan" style="font-weight: 700; color: var(--primary-gold); margin-bottom: 15px;"></p>
+            <p>Selamat datang di acara bukber PPI 2026.<br>Silahkan join ke grup WhatsApp dibawah ya</p>
+            <a href="https://chat.whatsapp.com/JzgWFZwD0ATDZvgJHP31Zt?mode=gi_t" class="wa-btn">
+                <i class="fab fa-whatsapp"></i> JOIN GROUP WA
+            </a>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCtQh5SpZCk2TDUk9iMOjQX5uc6gRIJyp8",
+            authDomain: "paskab-c3eb4.firebaseapp.com",
+            databaseURL: "https://paskab-c3eb4-default-rtdb.firebaseio.com",
+            projectId: "paskab-c3eb4",
+            storageBucket: "paskab-c3eb4.firebasestorage.app",
+            messagingSenderId: "630872087747",
+            appId: "1:630872087747:web:dbe8eee722f2d0f6759676"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Fungsi Update Kategori
+        window.updateKategori = function() {
+            const kat = document.getElementById('kategori').value;
+            const box = document.getElementById('angkatan-box');
+            const inp = document.getElementById('angkatan');
+
+            if (kat === "") {
+                box.classList.add('hidden');
+            } else {
+                box.classList.remove('hidden');
+                if (kat === 'CAPASKAB') {
+                    inp.value = "2026";
+                    inp.readOnly = true;
+                } else {
+                    inp.value = "";
+                    inp.readOnly = false;
+                }
+            }
+        }
+
+        const toBase64 = file => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+
+        // Fungsi Proses Data
+        window.prosesData = async function() {
+            const btn = document.getElementById('btnKirim');
+            const backBtn = document.querySelector('.back-home'); // Seleksi tombol back
+            const nama = document.getElementById('nama').value;
+            const wa = document.getElementById('whatsapp').value;
+            const kat = document.getElementById('kategori').value;
+            const angkatan = document.getElementById('angkatan').value;
+            const menu = document.querySelector('input[name="menu"]:checked');
+            const file = document.getElementById('bukti').files[0];
+
+            if (nama.length < 5) return alert("Nama minimal 5 huruf!");
+            if (wa.length < 10) return alert("Nomor WhatsApp tidak valid!");
+            if (!kat) return alert("Pilih kategori!");
+            if (angkatan.length < 4) return alert("Tahun angkatan harus 4 digit!");
+            if (!menu) return alert("Pilih menu makanan!");
+            if (!file) return alert("Upload bukti transfer!");
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SEDANG MENGIRIM...';
+
+            try {
+                const base64Img = await toBase64(file);
+                const listRef = ref(db, 'pendaftaran');
+                const barisBaru = push(listRef);
+                
+                await set(barisBaru, {
+                    nama: nama,
+                    whatsapp: wa,
+                    kategori: kat,
+                    angkatan: angkatan,
+                    menu: menu.value,
+                    bukti: base64Img,
+                    timestamp: Date.now()
+                });
+
+                // Sembunyikan form dan tombol back saat sukses
+                document.getElementById('form-ui').style.display = 'none';
+                if(backBtn) backBtn.style.display = 'none'; 
+                
+                document.getElementById('success-page').style.display = 'block';
+                document.getElementById('res-nama').innerText = `Halo ${nama}!`;
+                document.getElementById('res-angkatan').innerText = (kat === 'PPI') ? `Paskibraka ${angkatan}` : `Capaskab 2026`;
+
+            } catch (e) {
+                console.error(e);
+                alert("Gagal kirim! Cek koneksi atau Firebase Rules.");
+                btn.disabled = false;
+                btn.innerHTML = "KIRIM DATA";
+            }
+        }
+    </script>
+</body>
+</html>
