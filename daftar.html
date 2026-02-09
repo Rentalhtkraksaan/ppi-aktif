@@ -11,7 +11,7 @@
             --primary-gold: #ffcc00;
             --bg-dark: #0a0e17;
             --card-bg: rgba(255, 255, 255, 0.05);
-            --error-red: #ff4d4d;
+            --border-gold: rgba(255, 204, 0, 0.2);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
@@ -35,37 +35,71 @@
         }
 
         .container {
+            position: relative;
             max-width: 450px;
             width: 100%;
             background: var(--card-bg);
-            padding: 30px;
+            padding: 40px 25px 30px 25px; /* Padding atas ditambah untuk ruang tombol */
             border-radius: 25px;
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 204, 0, 0.2);
+            border: 1px solid var(--border-gold);
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        h2 { text-align: center; margin-bottom: 25px; color: var(--primary-gold); text-transform: uppercase; letter-spacing: 2px; }
+        /* --- PERBAIKAN TOMBOL BACK --- */
+        .back-home {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: var(--primary-gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 10px; /* Area klik lebih luas */
+            transition: 0.3s;
+            z-index: 20;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+
+        .back-home:hover {
+            background: var(--primary-gold);
+            color: black;
+        }
+
+        h2 { 
+            text-align: center; 
+            margin-bottom: 25px; 
+            margin-top: 10px; /* Jarak dari tombol back */
+            color: var(--primary-gold); 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            font-size: 1.4rem;
+        }
 
         .form-group { margin-bottom: 18px; }
-        label { display: block; font-size: 0.75rem; margin-bottom: 8px; color: #8892b0; font-weight: 700; }
+        label { display: block; font-size: 0.7rem; margin-bottom: 8px; color: #8892b0; font-weight: 700; }
 
-        input, select {
+        input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 15px;
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 12px;
             color: white;
             outline: none;
             transition: 0.3s;
+            font-size: 0.9rem;
         }
 
-        input:focus, select:focus { border-color: var(--primary-gold); background: rgba(255,255,255,0.1); }
-        input[readonly] { background: rgba(255,204,0,0.05); color: #888; cursor: not-allowed; border-color: rgba(255,204,0,0.2); }
+        input:focus { border-color: var(--primary-gold); background: rgba(255,255,255,0.1); }
 
         .radio-group { display: flex; gap: 10px; }
-        .radio-item { flex: 1; position: relative; }
+        .radio-item { flex: 1; }
         .radio-item input { display: none; }
         .radio-item label {
             display: block;
@@ -75,11 +109,11 @@
             border-radius: 12px;
             cursor: pointer;
             border: 1px solid rgba(255,255,255,0.1);
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 700;
+            font-size: 0.85rem;
         }
         .radio-item input:checked + label {
-            background: rgba(255, 204, 0, 0.15);
+            background: rgba(255, 204, 0, 0.2);
             border-color: var(--primary-gold);
             color: var(--primary-gold);
         }
@@ -94,25 +128,12 @@
             font-weight: 900;
             text-transform: uppercase;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
             transition: 0.3s;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 10px;
-        }
-        .btn-submit:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255, 204, 0, 0.4); }
-        .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-
-        #success-page {
-            display: none;
-            text-align: center;
-            animation: fadeInUp 0.7s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .wa-btn {
@@ -124,36 +145,11 @@
             text-decoration: none;
             border-radius: 50px;
             font-weight: 800;
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
             transition: 0.3s;
         }
 
-        .hidden { display: none; }
-        .back-home {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: var(--primary-gold);
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            z-index: 10;
-        }
+        #success-page { display: none; text-align: center; }
 
-        .back-home:hover {
-            color: white;
-            transform: translateX(-5px);
-        }
-
-        /* Pastikan container punya position relative agar tombol back mengikuti container */
-        .container {
-            position: relative; /* Tambahkan ini */
-            max-width: 450px;
-            /* ... sisa kode lainnya ... */
-        }
     </style>
 </head>
 <body>
@@ -161,31 +157,26 @@
     <div class="bg-animation"></div>
 
     <div class="container">
-        
+        <a href="main.html" class="back-home">
+             <span>BACK</span>
+        </a>
 
         <div id="form-ui">
             <h2>Pendaftaran</h2>
             <form id="regForm">
                 <div class="form-group">
                     <label>NAMA LENGKAP</label>
-                    <input type="text" id="nama" placeholder="Masukkan nama lengkap">
+                    <input type="text" id="nama" placeholder="Masukkan nama sesuai KTP/ID">
                 </div>
 
                 <div class="form-group">
                     <label>NOMOR WHATSAPP</label>
-                    <input type="number" id="whatsapp" placeholder="Contoh: 081234567xxx">
+                    <input type="number" id="whatsapp" placeholder="08xxxxxxxxxx">
                 </div>
+
+                <input type="hidden" id="kategori" value="PPI">
 
                 <div class="form-group">
-                    <label>KATEGORI</label>
-                    <select id="kategori" onchange="updateKategori()">
-                        <option value="">-- Pilih --</option>
-                        <option value="PPI">PPI</option>
-                        <option value="CAPASKAB">CAPASKAB</option>
-                    </select>
-                </div>
-
-                <div id="angkatan-box" class="form-group hidden">
                     <label>TAHUN ANGKATAN</label>
                     <input type="number" id="angkatan" placeholder="Contoh: 2024">
                 </div>
@@ -205,8 +196,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label>UPLOAD BUKTI TRANSFER</label>
-                    <input type="file" id="bukti" accept="image/*" style="font-size: 0.8rem;">
+                    <label>BUKTI TRANSFER</label>
+                    <input type="file" id="bukti" accept="image/*">
                 </div>
 
                 <button type="button" class="btn-submit" id="btnKirim" onclick="prosesData()">
@@ -219,9 +210,9 @@
             <i class="fas fa-check-circle" style="font-size: 5rem; color: var(--primary-gold); margin-bottom: 20px;"></i>
             <h2 id="res-nama">Halo!</h2>
             <p id="res-angkatan" style="font-weight: 700; color: var(--primary-gold); margin-bottom: 15px;"></p>
-            <p>Selamat datang di acara bukber PPI 2026.<br>Silahkan join ke grup WhatsApp dibawah ya</p>
-            <a href="https://chat.whatsapp.com/JzgWFZwD0ATDZvgJHP31Zt?mode=gi_t" class="wa-btn">
-                <i class="fab fa-whatsapp"></i> JOIN GROUP WA
+            <p>Selamat datang di acara bukber PPI 2026.</p>
+            <a href="https://chat.whatsapp.com/JzgWFZwD0ATDZvgJHP31Zt" class="wa-btn">
+                <i class="fab fa-whatsapp"></i> JOIN GROUP
             </a>
         </div>
     </div>
@@ -243,26 +234,6 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        // Fungsi Update Kategori
-        window.updateKategori = function() {
-            const kat = document.getElementById('kategori').value;
-            const box = document.getElementById('angkatan-box');
-            const inp = document.getElementById('angkatan');
-
-            if (kat === "") {
-                box.classList.add('hidden');
-            } else {
-                box.classList.remove('hidden');
-                if (kat === 'CAPASKAB') {
-                    inp.value = "2026";
-                    inp.readOnly = true;
-                } else {
-                    inp.value = "";
-                    inp.readOnly = false;
-                }
-            }
-        }
-
         const toBase64 = file => new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
@@ -270,58 +241,43 @@
             reader.onerror = error => reject(error);
         });
 
-        // Fungsi Proses Data
         window.prosesData = async function() {
             const btn = document.getElementById('btnKirim');
-            const backBtn = document.querySelector('.back-home'); // Seleksi tombol back
+            const backBtn = document.querySelector('.back-home');
             const nama = document.getElementById('nama').value;
             const wa = document.getElementById('whatsapp').value;
-            const kat = document.getElementById('kategori').value;
             const angkatan = document.getElementById('angkatan').value;
             const menu = document.querySelector('input[name="menu"]:checked');
             const file = document.getElementById('bukti').files[0];
 
-            if (nama.length < 5) return alert("Nama minimal 5 huruf!");
-            if (wa.length < 10) return alert("Nomor WhatsApp tidak valid!");
-            if (!kat) return alert("Pilih kategori!");
-            if (angkatan.length < 4) return alert("Tahun angkatan harus 4 digit!");
-            if (!menu) return alert("Pilih menu makanan!");
-            if (!file) return alert("Upload bukti transfer!");
+            if (nama.length < 5 || wa.length < 10 || !angkatan || !menu || !file) {
+                return alert("Lengkapi data terlebih dahulu!");
+            }
 
             btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SEDANG MENGIRIM...';
+            btn.innerHTML = 'MENGIRIM...';
 
             try {
                 const base64Img = await toBase64(file);
-                const listRef = ref(db, 'pendaftaran');
-                const barisBaru = push(listRef);
+                const barisBaru = push(ref(db, 'pendaftaran'));
                 
                 await set(barisBaru, {
-                    nama: nama,
-                    whatsapp: wa,
-                    kategori: kat,
-                    angkatan: angkatan,
-                    menu: menu.value,
-                    bukti: base64Img,
-                    timestamp: Date.now()
+                    nama, whatsapp: wa, kategori: "PPI", angkatan,
+                    menu: menu.value, bukti: base64Img, timestamp: Date.now()
                 });
 
-                // Sembunyikan form dan tombol back saat sukses
                 document.getElementById('form-ui').style.display = 'none';
                 if(backBtn) backBtn.style.display = 'none'; 
-                
                 document.getElementById('success-page').style.display = 'block';
                 document.getElementById('res-nama').innerText = `Halo ${nama}!`;
-                document.getElementById('res-angkatan').innerText = (kat === 'PPI') ? `Paskibraka ${angkatan}` : `Capaskab 2026`;
+                document.getElementById('res-angkatan').innerText = `Paskibraka ${angkatan}`;
 
             } catch (e) {
-                console.error(e);
-                alert("Gagal kirim! Cek koneksi atau Firebase Rules.");
+                alert("Gagal mengirim data.");
                 btn.disabled = false;
                 btn.innerHTML = "KIRIM DATA";
             }
         }
     </script>
 </body>
-
 </html>
