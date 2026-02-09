@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bukber - PPI Kabprob 2026</title>
+    <title>Calling Sponsorship - PPI Kabprob 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -20,21 +20,23 @@
 
         body {
             background-color: var(--bg-dark);
-            height: 100vh;
+            /* Menggunakan dvh agar benar-benar center di browser HP */
+            min-height: 100dvh; 
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
-            overflow: hidden;
             background: radial-gradient(circle at center, #1a2a44 0%, #0a0e17 100%);
             -webkit-tap-highlight-color: transparent;
+            padding: 20px;
+            overflow-x: hidden;
         }
 
         .overlay-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            width: 90%;
+            width: 100%;
             max-width: 400px;
             padding: 35px 25px;
             border-radius: 30px;
@@ -56,9 +58,9 @@
             filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.5));
         }
 
-        h1 { font-weight: 900; font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 8px; }
+        h1 { font-weight: 900; font-size: 1.5rem; letter-spacing: 1px; margin-bottom: 8px; line-height: 1.2; }
         h1 span { color: var(--primary-gold); }
-        p { font-size: 0.85rem; color: #a0aec0; margin-bottom: 25px; line-height: 1.4; }
+        p { font-size: 0.85rem; color: #a0aec0; margin-bottom: 25px; line-height: 1.5; }
 
         /* Partner Section */
         .current-sponsors {
@@ -83,65 +85,60 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .sponsor-item img {
-            width: 55px;
-            height: 55px;
+            width: 45px;
+            height: 45px;
             object-fit: contain;
             filter: drop-shadow(0 0 8px rgba(255, 204, 0, 0.3));
         }
 
         .sponsor-name { text-align: left; }
-        .sponsor-name b { display: block; font-size: 0.9rem; color: #fff; }
+        .sponsor-name b { display: block; font-size: 0.85rem; color: #fff; }
         .sponsor-name span { font-size: 0.65rem; color: #8892b0; }
 
         /* Buttons */
         .btn-wa {
             display: flex; align-items: center; justify-content: center; gap: 10px;
             background: #25d366; color: white; text-decoration: none;
-            padding: 15px; border-radius: 12px; font-weight: 700; margin-bottom: 10px;
+            padding: 16px; border-radius: 15px; font-weight: 700; margin-bottom: 12px;
             font-size: 0.9rem; transition: 0.3s;
         }
-
-        .btn-ig {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            background: linear-gradient(45deg, #f09433 0%, #dc2743 50%, #bc1888 100%);
-            color: white; text-decoration: none;
-            padding: 15px; border-radius: 12px; font-weight: 700; margin-bottom: 20px;
-            font-size: 0.9rem; transition: 0.3s;
-        }
-
-        .btn-wa:hover, .btn-ig:hover { transform: translateY(-2px); opacity: 0.9; }
 
         .btn-next {
-            width: 100%; background: transparent; color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 12px; border-radius: 12px; cursor: pointer;
-            font-weight: 600; font-size: 0.85rem; transition: 0.3s;
+            width: 100%; background: rgba(255,255,255,0.05); color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 14px; border-radius: 15px; cursor: pointer;
+            font-weight: 700; font-size: 0.85rem; transition: 0.3s;
         }
 
-        .btn-next:hover { color: var(--primary-gold); border-color: var(--primary-gold); }
+        .btn-wa:hover, .btn-next:hover { 
+            transform: scale(0.98);
+            background: var(--primary-gold);
+            color: black;
+            border-color: var(--primary-gold);
+        }
 
         /* Visitor Counter */
         .visitor-counter {
             margin-top: 25px;
             padding-top: 15px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #8892b0;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
         }
         #visit-count {
             color: var(--primary-gold);
             font-weight: 800;
             background: rgba(255, 204, 0, 0.1);
-            padding: 2px 8px;
-            border-radius: 5px;
+            padding: 2px 6px;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -170,8 +167,6 @@
             <i class="fab fa-whatsapp"></i> Chat Kemitraan
         </a>
 
-   
-
         <button class="btn-next" onclick="window.location.href='main.html'">
             Lanjut Masuk 
         </button>
@@ -183,7 +178,6 @@
     </div>
 
     <script>
-        // Konfigurasi Firebase Anda
         const firebaseConfig = {
             apiKey: "AIzaSyCtQh5SpZCk2TDUk9iMOjQX5uc6gRIJyp8",
             authDomain: "paskab-c3eb4.firebaseapp.com",
@@ -194,19 +188,15 @@
             appId: "1:630872087747:web:dbe8eee722f2d0f6759676"
         };
 
-        // Inisialisasi
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
         const visitRef = db.ref('visitor_stats/total_calls');
 
-        // Fungsi Counter "Aggressive" (Setiap refresh = +1)
         function startCounter() {
-            // Langsung tambah +1 tanpa cek localStorage
             visitRef.transaction((currentValue) => {
                 return (currentValue || 0) + 1;
             });
             
-            // Pantau perubahan secara real-time untuk ditampilkan di layar
             visitRef.on('value', (snapshot) => {
                 const count = snapshot.val();
                 if (count !== null) {
@@ -215,9 +205,7 @@
             });
         }
 
-        // Jalankan saat halaman dibuka
         startCounter();
     </script>
 </body>
-
 </html>
